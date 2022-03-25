@@ -1,0 +1,29 @@
+!--------------------------------------------------------------
+! title,"FCC-ee";
+! 		  
+!--------------------------------------------------------------
+SET, FORMAT="19.15f";
+option,update_from_parent=true; // new option in mad-x as of 2/2019
+
+// ttbar mode 182.5 GeV
+CALL, FILE="tapered_t_b1_thin.seq";
+
+pbeam :=   182.5;
+EXbeam = 1.46e-9;
+EYbeam = 2.9e-12;
+Nbun := 16640 ;
+NPar :=  1.7e11;
+
+Ebeam := sqrt( pbeam^2 + emass^2 );
+
+// Beam defined with radiation
+BEAM, PARTICLE=POSITRON, NPART=Npar, KBUNCH=Nbun, ENERGY=Ebeam, RADIATE=TRUE, BV=+1, EX=EXbeam, EY=EYbeam;
+
+!-------------------------------------------------------------------------------
+! Perform Twiss and save the sequence again
+!-------------------------------------------------------------------------------
+USE, SEQUENCE = RING;
+TWISS, FILE="twiss_t_b1_thin_tapered_fromsaved.tfs", TOLERANCE=1E-12;
+
+!USE, SEQUENCE = RING;
+!SAVE, SEQUENCE=RING, file="tapered_t_b1_thin_fromsaved.seq", beam=true;
