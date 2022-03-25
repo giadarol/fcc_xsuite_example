@@ -58,7 +58,7 @@ plt.close('all')
 fig1 = plt.figure(1, figsize=(6.4, 4.8*1.3))
 sp1 = fig1.add_subplot(3,1,1)
 sp2 = fig1.add_subplot(3,1,2, sharex=sp1)
-sp3 = fig1.add_subplot(3,2,3, sharex=sp1)
+sp3 = fig1.add_subplot(3,1,3, sharex=sp1)
 sp1.plot(tw['s'], tw['betx'], color = 'blue', label=r'$\beta_x$ - Xsuite')
 sp1.plot(twmad['s'], twmad['betx'], color = 'lightblue',
          linestyle='--', label=r'$\beta_x$ - MAD-X')
